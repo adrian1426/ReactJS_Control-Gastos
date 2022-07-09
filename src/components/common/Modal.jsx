@@ -1,7 +1,7 @@
 import IconClose from '../../img/cerrar.svg';
 
 const Modal = (props) => {
-  const { children, setOpenModal } = props;
+  const { children, handlecloseModal } = props;
 
   return (
     <div className="modal">
@@ -9,7 +9,7 @@ const Modal = (props) => {
         <img
           src={IconClose}
           alt="cerrar"
-          onClick={() => setOpenModal(false)}
+          onClick={handlecloseModal}
         />
       </div>
       {children}
