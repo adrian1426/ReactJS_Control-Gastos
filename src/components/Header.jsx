@@ -1,10 +1,15 @@
 import PresupuestoForm from "./PresupuestoForm";
 
-const Header = () => {
+const Header = (props) => {
+  const { presupuesto, setPresupuestos } = props;
+
   return (
     <header>
       <h1>Planificador de Gastos</h1>
-      <PresupuestoForm />
+      <PresupuestoForm
+        presupuesto={presupuesto}
+        setPresupuestos={setPresupuestos}
+      />
     </header>
   );
 };
