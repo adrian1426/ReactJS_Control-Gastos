@@ -2,12 +2,11 @@ import { useState } from 'react';
 import Message from './common/Message';
 
 const PresupuestoForm = (props) => {
-  const { presupuesto, setPresupuestos } = props;
+  const { presupuesto, setPresupuestos, setAddedPresupuesto } = props;
   const [messageError, setMessageError] = useState();
 
   const validationPresupuesto = () => {
-    const presupuestoNumber = Number(presupuesto);
-    return presupuestoNumber && presupuestoNumber > 0;
+    return presupuesto > 0;
   };
 
   const handleSubmit = (e) => {
@@ -16,8 +15,10 @@ const PresupuestoForm = (props) => {
 
     if (isValid) {
       setMessageError(null);
+      setAddedPresupuesto(true);
     } else {
       setMessageError('Presupuesto No Válido. Debe ser numérico y mayor a 0');
+      setAddedPresupuesto(false);
     }
   };
 
@@ -29,9 +30,9 @@ const PresupuestoForm = (props) => {
           <input
             className='nuevo-presupuesto'
             placeholder='Agrega tu presupuesto'
-            type="text"
+            type="number"
             value={presupuesto}
-            onChange={(e) => setPresupuestos(e.target.value)}
+            onChange={(e) => setPresupuestos(Number(e.target.value))}
           />
         </div>
 
