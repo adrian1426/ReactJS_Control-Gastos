@@ -1,4 +1,5 @@
 import PresupuestoForm from "./PresupuestoForm";
+import PresupuestoManagment from "./PresupuestoManagment";
 
 const Header = (props) => {
   const { presupuesto, setPresupuestos, addedPresupuesto, setAddedPresupuesto } = props;
@@ -9,7 +10,9 @@ const Header = (props) => {
 
       {
         addedPresupuesto ? (
-          <p>Mnejador de presupuesto</p>
+          <PresupuestoManagment
+            presupuesto={presupuesto}
+          />
         ) : (
           <PresupuestoForm
             presupuesto={presupuesto}
