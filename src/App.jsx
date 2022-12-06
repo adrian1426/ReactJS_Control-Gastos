@@ -26,6 +26,10 @@ function App() {
     }, 500);
   };
 
+  const guardarGasto = (gasto) => {
+    console.log(gasto);
+  };
+
   return (
     <div >
       <Header
@@ -51,6 +55,7 @@ function App() {
         <Modal handlecloseModal={handlecloseModal}>
           <GastoForm
             animarForm={animarForm}
+            guardarGasto={guardarGasto}
           />
         </Modal>
       )}

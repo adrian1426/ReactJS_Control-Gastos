@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Message from './common/Message';
 
 const initialState = {
   nombre: '',
@@ -7,8 +8,9 @@ const initialState = {
 };
 
 const GastoForm = (props) => {
-  const { animarForm } = props;
+  const { animarForm, guardarGasto } = props;
   const [gasto, setGasto] = useState(initialState);
+  const [mensajeError, setMensajeError] = useState('');
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -21,6 +23,18 @@ const GastoForm = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if ([gasto.nombre, gasto.categoria, gasto.monto].includes('') || [gasto.monto].includes(0)) {
+      setMensajeError('Todos los campos son obligatorios');
+
+      setTimeout(() => {
+        setMensajeError('');
+      }, 2000);
+      return;
+    } else {
+      setMensajeError('');
+      guardarGasto(gasto);
+    }
   };
 
   return (
@@ -29,6 +43,8 @@ const GastoForm = (props) => {
       onSubmit={handleSubmit}
     >
       <legend>Nuevo gasto</legend>
+      {mensajeError && (<Message tipo='error'>{mensajeError}</Message>)}
+
       <div className='campo'>
         <label htmlFor="nombre">Nombre gasto</label>
         <input
@@ -39,6 +55,7 @@ const GastoForm = (props) => {
           onChange={handleChange}
         />
       </div>
+
       <div className='campo'>
         <label htmlFor="monto">Monto</label>
         <input
@@ -49,6 +66,7 @@ const GastoForm = (props) => {
           onChange={handleChange}
         />
       </div>
+
       <div className='campo'>
         <label htmlFor="categoria">Categoría</label>
         <select
