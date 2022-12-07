@@ -32,6 +32,7 @@ function App() {
   const guardarGasto = (gasto) => {
     const newGasto = {
       id: generarId(),
+      fecha: Date.now(),
       ...gasto
     };
 
