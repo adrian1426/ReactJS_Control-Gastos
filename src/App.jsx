@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal from './components/common/Modal';
 import GastoForm from './components/GastoForm';
+import { generarId } from './helpers/index';
 import Header from "./components/Header";
 import IconNuevo from './img/nuevo-gasto.svg';
 
@@ -9,6 +10,7 @@ function App() {
   const [addedPresupuesto, setAddedPresupuesto] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [animarForm, setAnimarForm] = useState(false);
+  const [gastos, setGastos] = useState([]);
 
   const handleAddGasto = () => {
     setOpenModal(true);
@@ -27,7 +29,14 @@ function App() {
   };
 
   const guardarGasto = (gasto) => {
-    console.log(gasto);
+    const newGasto = {
+      id: generarId(),
+      ...gasto
+    };
+
+    setGastos([...gastos, newGasto]);
+
+    handlecloseModal();
   };
 
   return (
