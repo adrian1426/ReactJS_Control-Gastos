@@ -4,6 +4,7 @@ import GastoForm from './components/GastoForm';
 import { generarId } from './helpers/index';
 import Header from "./components/Header";
 import IconNuevo from './img/nuevo-gasto.svg';
+import GastoList from './components/GastoList';
 
 function App() {
   const [presupuesto, setPresupuestos] = useState(0);
@@ -50,13 +51,21 @@ function App() {
 
       {
         addedPresupuesto && (
-          <div className='nuevo-gasto'>
-            <img
-              src={IconNuevo}
-              alt="icon add nuevo gasto"
-              onClick={handleAddGasto}
-            />
-          </div>
+          <>
+            <main>
+              <GastoList
+                gastos={gastos}
+              />
+            </main>
+
+            <div className='nuevo-gasto'>
+              <img
+                src={IconNuevo}
+                alt="icon add nuevo gasto"
+                onClick={handleAddGasto}
+              />
+            </div>
+          </>
         )
       }
 
